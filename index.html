@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+</head>
+<!--Include the Google Maps API into our file-->
+
+
+<body>
+    <header>
+        <h1>Weather Forecaster.</h1>
+        <h2>Get real-time weather from all over the world!</h2>
+        <div id="forms">
+
+            <form id="cityname">
+                <h4>Enter the city:</h4>
+                <input placeholder="Enter your city..." type="text" name="city"><br>
+            </form>
+
+
+            <form>
+                <h4>Units:</h4>
+                <select id="units">
+                    <option>Metric</option>
+                    <option>Imperial</option>
+                </select>
+
+            </form>
+
+            <form>
+                <h4>Days:</h4>
+                <select id="days">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+            </form>
+            <!--When this button is clicked it activates the function to retrieve the data-->
+            <button id="btn" onclick="checkInput()">Get Weather!</button>
+        </div>
+        <div id="errorSpace"></div>
+    </header>
+    <!--Container div is used for displaying all the weather content and wrapping the contents-->
+    <div id="container">
+        <div id="pre">
+
+            <div id="welcomeMessage">
+                <h1>Welcome to Weather Forecaster.</h1>
+                <p>This site uses the OpenWeatherMap API to bring you 5 day forecasts from up to 200,000 cities across the world. To get started, Simply enter the city you're interesting in, the units you want to use, the number of days you want the forecast for and the Weather Forecaster will get you results in an instant.</p>
+            </div>
+
+            <!--This div is hidden on pageload and used to display various options if the search results are ambigiuous-->
+            <div id="optionselect">
+                <div id="options"></div>
+            </div>
+
+            <h1>How to Search.</h1>
+            <p>If you'd like to search for a specific location then simply place the name of the city and country code seperated by a comma in the search bar above. For example, to get info on Dublin, Ireland enter 'Dublin,ie'.</p>
+        </div>
+
+        <div id="fiveday">
+            <div id="chosenCity"></div>
+            <div id="googleMap"></div>
+
+            <div id="forecastTitle">
+                <h1>Forecast</h1>
+                <h3 style="padding: 0; margin: 0; text-align: center; font-size: 15px;">Click the day for more info!</h3>
+            </div>
+            <div id="checkboxarea">
+                <h2>Display</h2>
+                <div id="checkboxes">
+                    <form>
+                        <input type="checkbox" name="raincheck" value="rain" checked onclick="hideInfo('rainfall', this)">
+                        <h4>Rainfall</h4><br>
+                        <input type="checkbox" name="maxtemp" value="maxtem" checked onclick="hideInfo('maxtemp', this)">
+                        <h4>Max Temperature</h4><br>
+                        <input type="checkbox" name="mintemp" value="mintem" checked onclick="hideInfo('mintemp', this)">
+                        <h4>Min Temperature</h4><br>
+                        <input type="checkbox" name="humidity" value="hum" checked onclick="hideInfo('pressure', this)">
+                        <h4>Pressure</h4><br>
+                        <input type="checkbox" name="speed" value="speed" checked onclick="hideInfo('humidity', this)">
+                        <h4>Humidity</h4><br>
+                        <input type="checkbox" name="Temperature" value="temp" checked onclick="hideInfo('windspeed', this)">
+                        <h4>Wind Speed</h4><br>
+                        <input type="checkbox" name="imagedisplay" value="imag" checked onclick="hideInfo('icon', this)">
+                        <h4>Graphic Display</h4><br>
+                    </form>
+                </div>
+            </div>
+            <div id="forecast">
+                <!--This is dynamically filled using JS-->
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="forecaster.js"></script>
+</body>
+</html>
